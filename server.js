@@ -1,0 +1,18 @@
+const express = require('express');
+const cors = require('cors');
+const dotenv=require('dotenv').config();
+const connectDB=require('./databaseconnetion');
+const routes=require('./routes');
+const servername=express();
+servername.use(cors());
+
+servername.use(express.json());
+
+servername.use(routes);
+servername.use("/uploads", express.static("uploads"));
+
+const PORT=process.env.PORT || 5000;
+
+servername.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
