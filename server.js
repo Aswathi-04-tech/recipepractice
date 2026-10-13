@@ -4,7 +4,7 @@ const dotenv=require('dotenv').config();
 const connectDB=require('./databaseconnetion');
 const routes=require('./routes');
 const servername=express();
-servername.use(cors());
+servername.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 
 servername.use(express.json());
 
