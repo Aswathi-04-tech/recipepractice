@@ -3,6 +3,7 @@ const cors = require('cors');
 const dotenv=require('dotenv').config();
 const connectDB=require('./databaseconnetion');
 const routes=require('./routes');
+const helmet = require('helmet');
 const servername=express();
 
 servername.use(express.json());
@@ -10,7 +11,7 @@ servername.use(cors({ origin: process.env.CLIENT_URL|| "https://eclectic-fenglis
 
 servername.use(routes);
 servername.use("/uploads", express.static("uploads"));
-
+servername.use(helmet());
 const PORT=process.env.PORT || 5000;
 
 servername.listen(PORT, () => {
